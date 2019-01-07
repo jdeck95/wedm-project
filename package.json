@@ -9,6 +9,8 @@
   "author": "Jeremias Deck",
   "license": "MIT",
   "dependencies": {
-    "xml2js": "^0.4.19"
+    "dom-parser": "^0.1.5",
+    "xml2js": "^0.4.19",
+    "xmldom": "^0.1.27"
   }
 }
