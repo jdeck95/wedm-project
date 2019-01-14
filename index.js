@@ -35,6 +35,9 @@ async function getData (){
                 for (let m = 0; m < textPs.length; m++) {
                     const textP = textPs[m];
                     const spans = textP.getElementsByTagName('text:span');
+                    if (spans.length == 0) {
+                        module.push('');
+                    }
                     for (let n = 0; n < spans.length; n++) {
                         const span = spans[n]['childNodes']; 
                         let text = '';
