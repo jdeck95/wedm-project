@@ -9,10 +9,27 @@ const filterCell = function(cell){
     return filteredCell;
 }
 
+const createHeader = function(headerText){
+  let header = `====== ${headerText} ======`;
+  return header;
+}
+
+const createItems = function(data){
+  let items = [];
+  data.forEach(text => {
+    items.push(`* ${text}`);
+  });
+  return items;
+}
+
 const sortData = function(modules) {
   modules[0].forEach(cellData => {
     const cell = filterCell(cellData);
-    console.log(cell);
+    let formattedCell = {
+      header: createHeader(cell[1]),
+      items: createItems(cell.slice(2))
+    };
+    console.log(formattedCell);
   });
 }
 
