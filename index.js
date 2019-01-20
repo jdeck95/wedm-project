@@ -1,18 +1,13 @@
 const fs = require('fs');
-const xml2js = require('xml2js');
 const util = require('util');
 const DOMParser = require('xmldom').DOMParser;
-const DOMParser2 = require('dom-parser');
-const parser2 = new DOMParser2();
 
 const readFile = util.promisify(fs.readFile);
-const parseString = util.promisify(xml2js.parseString);
 const parser = new DOMParser();
 
 async function readFodtFile() {
     const data = await readFile('Modulhandbuecher.fodt');
     const xml = data.toString();
-    const result = await parseString(xml);
     const xmlDoc = parser.parseFromString(xml);
     return xmlDoc;
 }
@@ -29,6 +24,7 @@ async function getData (){
         for (let j = 0; j < tableRows.length; j++) {
             const tableRow = tableRows[j];
             const tableCells = tableRow.getElementsByTagName('table:table-cell');
+            module.push(`Zelle ${j}`);
             for (let k = 0; k < tableCells.length; k++) {
                 const tableCell = tableCells[k];
                 const textPs = tableCell.getElementsByTagName('text:p');
