@@ -9,7 +9,8 @@ async function getData (xml){
       for (let j = 0; j < tableRows.length; j++) {
           const tableRow = tableRows[j];
           const tableCells = tableRow.getElementsByTagName('table:table-cell');
-          module.push(`Zelle ${j}`);
+          const cell = [];
+          cell.push(`Zelle${j+1}`);
           for (let k = 0; k < tableCells.length; k++) {
               const tableCell = tableCells[k];
               const textPs = tableCell.getElementsByTagName('text:p');
@@ -17,7 +18,7 @@ async function getData (xml){
                   const textP = textPs[m];
                   const spans = textP.getElementsByTagName('text:span');
                   if (spans.length == 0) {
-                      module.push('');
+                      cell.push('');
                   }
                   for (let n = 0; n < spans.length; n++) {
                       const span = spans[n]['childNodes']; 
@@ -26,10 +27,11 @@ async function getData (xml){
                           text = text.concat(span[h]['data'], " ");
                       }
                       text = text.replace('undefined', '');
-                      module.push(text);
+                      cell.push(text);
                   }
               }
           }
+          module.push(cell);
       }
       moduleList.push(module);
   } 
