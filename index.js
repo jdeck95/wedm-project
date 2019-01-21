@@ -3,6 +3,7 @@ const util = require('util');
 const DOMParser = require('xmldom').DOMParser;
 const getData = require('./getData');
 const sortData = require('./sortData');
+const createFile = require('./createFile');
 
 const readFile = util.promisify(fs.readFile);
 const parser = new DOMParser();
@@ -18,7 +19,7 @@ async function run() {
     const xml = await readFodtFile();
     const modules = await getData(xml);
     const sortedData = sortData(modules);
-    console.log(sortedData);
+    createFile(sortedData);
 }
 
 run();
