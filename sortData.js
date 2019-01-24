@@ -10,14 +10,14 @@ const filterCell = function(cell){
 }
 
 const createHeader = function(headerText){
-  let header = `====== ${headerText}======`;
+  let header = `| ${headerText}|`;
   return header;
 }
 
 const createItems = function(data){
   let items = [];
   data.forEach(text => {
-    items.push(`* ${text}`);
+    items.push(` ${text}|`);
   });
   return items;
 }
