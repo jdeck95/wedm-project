@@ -19,6 +19,7 @@ async function run() {
     const xml = await readFodtFile();
     const modules = await getData(xml);
     const sortedData = sortData(modules);
+    console.log(sortedData);
     createFile(sortedData);
 }
 
