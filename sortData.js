@@ -22,13 +22,19 @@ const createItems = function(data){
   return items;
 }
 
-const sortData = function(modules) {
+let filename = '';
+
+const getFilename = function(){
+  return filename;
+}
+
+const sortData = function(module) {
   let sortedData = [];
   let pruefungsleistung = '';
   let ectsPunkte = '';
 
-  for (let i = 0; i < modules[0].length; i++){
-    const cellData = modules[0][i];
+  for (let i = 0; i < module.length; i++){
+    const cellData = module[i];
     const cell = filterCell(cellData);
     let formattedCell = {
       header: '',
@@ -42,6 +48,7 @@ const sortData = function(modules) {
         };
         break;
       case 'Zelle2':
+        filename = cell[4];
         formattedCell = {
           header: `===== ${cell[1]} ${cell[2]} =====\n`,
           items: [`${cell[3]} ${cell[4]} ${cell[5]}`]
@@ -68,7 +75,7 @@ const sortData = function(modules) {
       case 'Zelle5':
         formattedCell = {
           header: '',
-          items : [`| ${cell[2]} | ${cell[3]} | ${cell[4]} |\n`]
+          items : [`| ${cell[2]} | ${cell[4]} | ${cell[5]} |\n`]
         };
         break;
       case 'Zelle10':
@@ -94,16 +101,15 @@ const sortData = function(modules) {
       case 'Zelle13': 
         formattedCell = {
           header: '',
-          items: [`| ${cell[1]} ${cell[2]} | ${cell[3]} ${cell[4]} ${cell[5]} | ${cell[6]} |`]
+          items: [`| ${cell[1]} ${cell[2]} | ${cell[3]} | ${cell[4]} |`]
         }
-        pruefungsleistung = pruefungsleistung.concat(cell[7], cell[8]);
-        ectsPunkte = ectsPunkte.concat(cell[9]);
+        pruefungsleistung = pruefungsleistung.concat(cell[5], cell[6]);
+        ectsPunkte = ectsPunkte.concat(cell[7]);
         break;
       case 'Zelle14': 
-      console.log(cell);
         formattedCell = {
           header: '',
-          items: [`| ${cell[1]} | ${cell[2]} ${cell[3]} ${cell[4]} | ${cell[5]} |\n`, pruefungsleistung, ectsPunkte]
+          items: [`| ${cell[1]} | ${cell[2]} | ${cell[3]} |\n`, pruefungsleistung, ectsPunkte]
         }
         break;
       case 'Zelle15': 
@@ -119,17 +125,8 @@ const sortData = function(modules) {
     }
     sortedData.push(formattedCell);
   };
-  // 
-  // modules[0].forEach(cellData => {
-  //   const cell = filterCell(cellData);
-  //   let formattedCell = {
-  //     header: createHeader(cell[1]),
-  //     items: createItems(cell.slice(2))
-  //   };
-  //   sortedData.push(formattedCell);
-  // });
 
-  return sortedData;
+  return {filename, sortedData};
 }
 
-module.exports = sortData;
+module.exports = {sortData, getFilename};

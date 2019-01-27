@@ -20,15 +20,16 @@ async function getData (xml){
                   if (spans.length == 0) {
                       cell.push('');
                   }
+                  let text = '';
                   for (let n = 0; n < spans.length; n++) {
                       const span = spans[n]['childNodes']; 
-                      let text = '';
+                      
                       for (let h = 0; h < span.length; h++) {
                           text = text.concat(span[h]['data'], " ");
                       }
                       text = text.replace('undefined', '');
-                      cell.push(text);
                   }
+                  cell.push(text);
               }
           }
           module.push(cell);

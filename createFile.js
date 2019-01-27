@@ -4,8 +4,9 @@ const asyncForEach = require('./helper');
 
 const appendFile = util.promisify(fs.appendFile);
 
-const createFile = async function(sortedData) {
+const createFile = async function(sortedData, filename) {
     let cellLength = [];
+    filename = filename.split(' ').join('_');
     await asyncForEach(sortedData,async (cell) => {
         let items = cell['header'];
         cellLength.push(cell['items'].length);
@@ -14,12 +15,12 @@ const createFile = async function(sortedData) {
         });
         //items = items.concat('\n');
 
-        await appendFile('zim.txt', items, (err) => {
+        await appendFile(`zimFiles/${filename}.txt`, items, (err) => {
             if (err) throw err;
         });
     });
 
-    await appendFile('zim.txt', '\n', (err) => {
+    await appendFile(`zimFiles/${filename}.txt`, '\n', (err) => {
         if (err) throw err;
     });
 
