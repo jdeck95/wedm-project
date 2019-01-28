@@ -15,12 +15,39 @@ async function readFodtFile() {
     return xmlDoc;
 }
 
+function filterCell(cell){
+    let filteredCell = cell;
+      if (cell[0] !== 'Zelle5') {
+        filteredCell = cell.filter(el => {
+          const trimedEl = el.trim();
+          return trimedEl != '';
+        })
+      }
+      return filteredCell;
+  }
+
+function getFilenames(modules) {
+    let filenames = [];
+
+    modules.forEach(module => {
+        module.forEach(cell => {
+            cell = filterCell(cell);
+            if (cell[0] == 'Zelle2') {
+                filenames.push(cell[4].trim());
+            }
+        })
+    });
+
+    return filenames;
+}
+
 async function run() {
     const xml = await readFodtFile();
     const modules = await getData(xml);
+    const filenames = getFilenames(modules);
 
     modules.forEach(module => {
-        const sortedData = sortData(module)['sortedData'];
+        const sortedData = sortData(module, filenames)['sortedData'];
         const filename = getFilename();
         createFile(sortedData, filename);
     });

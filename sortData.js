@@ -15,7 +15,7 @@ const getFilename = function(){
   return filename;
 }
 
-const sortData = function(module) {
+const sortData = function(module, filenames) {
   let sortedData = [];
   let pruefungsleistung = '';
   let ectsPunkte = '';
@@ -44,7 +44,6 @@ const sortData = function(module) {
       case 'Zelle3':
       case 'Zelle6':
       case 'Zelle7':
-      case 'Zelle8': //empfohlene voraussetzungen
       case 'Zelle9':
       case 'Zelle11':
       case 'Zelle16':
@@ -57,6 +56,24 @@ const sortData = function(module) {
           items: items100
         }
         break;
+      case 'Zelle8':
+        let itemsSliced101 = cell.slice(2);
+        let items101 = itemsSliced101.map(item => {
+          let returnItem = `* ${item}`;
+          filenames.forEach(name => {
+            if(item.includes(name)){
+              console.log('Hello', name, item);
+              const string = item.replace(name, `[[${name}]]`)
+              returnItem = `* ${string}`;
+            }
+          });
+          return returnItem;
+        });
+        formattedCell = {
+          header: `===== ${cell[1]} =====\n`,
+          items: items101
+        }
+        break;  
       case 'Zelle4':
         formattedCell = {
           header: `===== Regelsemester + ECTS-Punkte =====\n`,
