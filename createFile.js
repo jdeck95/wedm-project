@@ -6,7 +6,7 @@ const appendFile = util.promisify(fs.appendFile);
 
 const createFile = async function(sortedData, filename) {
     let cellLength = [];
-    filename = filename.split(' ').join('_');
+    filename = filename.trim().split(' ').join('_');
     await asyncForEach(sortedData,async (cell) => {
         let items = cell['header'];
         cellLength.push(cell['items'].length);

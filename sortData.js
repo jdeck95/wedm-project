@@ -44,7 +44,7 @@ const sortData = function(module) {
       case 'Zelle3':
       case 'Zelle6':
       case 'Zelle7':
-      case 'Zelle8':
+      case 'Zelle8': //empfohlene voraussetzungen
       case 'Zelle9':
       case 'Zelle11':
       case 'Zelle16':
