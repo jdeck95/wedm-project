@@ -35,7 +35,8 @@ async function getData (xml){
           module.push(cell);
       }
       moduleList.push(module);
-  } 
+  }
+  
   return moduleList;
 }
 

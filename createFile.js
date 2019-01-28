@@ -13,19 +13,15 @@ const createFile = async function(sortedData, filename) {
         cell['items'].forEach(item => {
             items = items.concat(`${item}\n`);
         });
-        //items = items.concat('\n');
 
-        await appendFile(`zimFiles/${filename}.txt`, items, (err) => {
+        await appendFile(`zim/${filename}.txt`, items, (err) => {
             if (err) throw err;
         });
     });
 
-    await appendFile(`zimFiles/${filename}.txt`, '\n', (err) => {
+    await appendFile(`zim/${filename}.txt`, '\n', (err) => {
         if (err) throw err;
     });
-
-    console.log(Math.max(...cellLength));
-    console.log('File created!');
 }
 
 module.exports = createFile;

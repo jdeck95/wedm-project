@@ -9,19 +9,6 @@ const filterCell = function(cell){
     return filteredCell;
 }
 
-const createHeader = function(headerText){
-  let header = headerText;
-  return header;
-}
-
-const createItems = function(data){
-  let items = [];
-  data.forEach(text => {
-    items.push(text);
-  });
-  return items;
-}
-
 let filename = '';
 
 const getFilename = function(){
@@ -61,9 +48,13 @@ const sortData = function(module) {
       case 'Zelle9':
       case 'Zelle11':
       case 'Zelle16':
+      let itemsSliced100 = cell.slice(2);
+        let items100 = itemsSliced100.map(item => {
+          return `* ${item}`;
+        });
         formattedCell = {
           header: `===== ${cell[1]} =====\n`,
-          items: [cell[2]]
+          items: items100
         }
         break;
       case 'Zelle4':
@@ -104,7 +95,8 @@ const sortData = function(module) {
           items: [`| ${cell[1]} ${cell[2]} | ${cell[3]} | ${cell[4]} |`]
         }
         pruefungsleistung = pruefungsleistung.concat(cell[5], cell[6]);
-        ectsPunkte = ectsPunkte.concat(cell[7]);
+        //TODO: fix calculation of ECTS-Points
+        //ectsPunkte = ectsPunkte.concat(cell[7]);
         break;
       case 'Zelle14': 
         formattedCell = {
@@ -119,7 +111,7 @@ const sortData = function(module) {
         });
         formattedCell = {
           header: `===== ${cell[1]} =====\n`,
-          items15
+          items: items15
         }
         break;
     }
