@@ -1,4 +1,4 @@
-#Installationu und Nutzung
+# Installation und Nutzung
 * für die Nutzung ist eine aktuelle Version von Node.js nötig
 * im root-Ordner `npm install` ausführen
 * das Skript wird mit `node index` gestartet
