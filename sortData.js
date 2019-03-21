@@ -30,14 +30,15 @@ const sortData = function(module, filenames) {
     switch(cell[0]) {
       case 'Zelle1': 
         formattedCell = {
-          header: `===== ${cell[1]} ${cell[2]} =====\n`,
+          header: `==== ${cell[1]} ${cell[2]} ====\n`,
           items: [`${cell[3]} ${cell[4]}`]
         };
         break;
       case 'Zelle2':
         filename = cell[4];
+        sortedData.unshift({header: `===== ${filename} =====`, items: ['']});
         formattedCell = {
-          header: `===== ${cell[1]} ${cell[2]} =====\n`,
+          header: `==== ${cell[1]} ${cell[2]} ====\n`,
           items: [`${cell[3]} ${cell[4]} ${cell[5]}`]
         };
         break;
@@ -52,7 +53,7 @@ const sortData = function(module, filenames) {
           return `* ${item}`;
         });
         formattedCell = {
-          header: `===== ${cell[1]} =====\n`,
+          header: `==== ${cell[1]} ====\n`,
           items: items100
         }
         break;
@@ -62,7 +63,6 @@ const sortData = function(module, filenames) {
           let returnItem = `* ${item}`;
           filenames.forEach(name => {
             if(item.includes(name)){
-              console.log('Hello', name, item);
               const string = item.replace(name, `[[${name}]]`)
               returnItem = `* ${string}`;
             }
@@ -70,13 +70,13 @@ const sortData = function(module, filenames) {
           return returnItem;
         });
         formattedCell = {
-          header: `===== ${cell[1]} =====\n`,
+          header: `==== ${cell[1]} ====\n`,
           items: items101
         }
         break;  
       case 'Zelle4':
         formattedCell = {
-          header: `===== Regelsemester + ECTS-Punkte =====\n`,
+          header: `==== Regelsemester + ECTS-Punkte ====\n`,
           items: [`| ${cell[2]} | ${cell[3]} | ${cell[4]} |`]
         }
         break;
@@ -94,13 +94,13 @@ const sortData = function(module, filenames) {
           return `${i}. ${item}`;
         });
         formattedCell = {
-          header: `===== ${cell[1]} =====\n`,
+          header: `==== ${cell[1]} ====\n`,
           items
         }
         break;
       case 'Zelle12': 
         formattedCell = {
-          header: `===== ${cell[1]} ${cell[2]} =====\n`,
+          header: `==== ${cell[1]} ${cell[2]} ====\n`,
           items: [`| ${cell[3]} | ${cell[4]} | ${cell[5]} |`]
         }
         pruefungsleistung = cell[6];
@@ -127,7 +127,7 @@ const sortData = function(module, filenames) {
           return `* ${item}`;
         });
         formattedCell = {
-          header: `===== ${cell[1]} =====\n`,
+          header: `==== ${cell[1]} ====\n`,
           items: items15
         }
         break;
