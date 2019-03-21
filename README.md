@@ -8,3 +8,5 @@
 * als Vorlage dafür sollte das durch das Skript generierte `latex/ModuleTemplate.tex` benutzt werden
 * die entstanden tex-Datein dann in PDF umwandeln. Den Umwandlungsprozess zwei mal ausführen,
 damit das Inhaltsverzeichnis korrekt erstell wird.
+* die Nutzung von `pdflatex` ist an dieser Stelle empfehlenswert. Wenn beim Prozess Fehler auftreten ist
+das normal. Den Vorgang mit `Q` abbrechen, die Datei wurde trotzdem korrekt erstellt.
