@@ -10,9 +10,14 @@ const filterCell = function(cell){
 }
 
 let filename = '';
+let moduleArt = '';
 
 const getFilename = function(){
   return filename;
+}
+
+const getModuleArt = function(){
+  return moduleArt;
 }
 
 const sortData = function(module, filenames) {
@@ -35,6 +40,7 @@ const sortData = function(module, filenames) {
         };
         break;
       case 'Zelle2':
+        moduleArt = cell[3];
         filename = cell[4];
         sortedData.unshift({header: `===== ${filename} =====`, items: ['']});
         formattedCell = {
@@ -138,4 +144,4 @@ const sortData = function(module, filenames) {
   return {filename, sortedData};
 }
 
-module.exports = {sortData, getFilename};
+module.exports = {sortData, getFilename, getModuleArt};
