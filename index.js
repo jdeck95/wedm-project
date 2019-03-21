@@ -1,5 +1,6 @@
 const fs = require('fs');
 const util = require('util');
+const colors = require('colors');
 const DOMParser = require('xmldom').DOMParser;
 const getData = require('./getData');
 const {sortData, getFilename, getModuleArt} = require('./sortData');
@@ -55,7 +56,7 @@ async function run() {
         moduleList.push({moduleArt, filename});
     });
 
-    console.log('Files created');
+    console.log('Files created'.bgGreen.black);
 }
 
 run();
