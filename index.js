@@ -5,6 +5,7 @@ const DOMParser = require('xmldom').DOMParser;
 const getData = require('./getData');
 const {sortData, getFilename, getModuleArt} = require('./sortData');
 const createFile = require('./createFile');
+const createTexTemplate = require('./createTexTemplate');
 
 const readFile = util.promisify(fs.readFile);
 const parser = new DOMParser();
@@ -57,6 +58,8 @@ async function run() {
     });
 
     console.log('Files created'.bgGreen.black);
+
+    createTexTemplate(moduleList);
 }
 
 run();
